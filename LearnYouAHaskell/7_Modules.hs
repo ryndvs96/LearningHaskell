@@ -1,3 +1,5 @@
+{-- Chapter 7: Modules --}
+
 -- import in Haskell File
 import Data.List
 
@@ -43,15 +45,9 @@ preSuffix [] = []
 preSuffix xs = foldl' func [] $ (init . inits) xs
     where func = (\acc x -> if x `isSuffixOf` xs then x else acc)
     
--- implementation of the kmp algorithm
 -- failure function
 failure :: String -> [Int]
-failure [] = error "Must not be null!"
+failure [] = error "Must not be null"
 failure xs = table
     where table = -1:[length (preSuffix x) | x <- tail (inits xs)]
-
-func :: String -> Int -> Int -> Int
-func pos cnd 
-    | pos == 0  = -1
-    | pos == 1  = 0
-    | otherwise = 
+ 
